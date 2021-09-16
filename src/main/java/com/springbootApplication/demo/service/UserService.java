@@ -7,29 +7,34 @@ import com.springbootApplication.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 @Service
 public class UserService {
+
     @Autowired
     private UserRepository repo;
 
 
-        public void  saveUser (User user)throws RecordsNotSave {
+
+     public void  saveUser (User user)throws RecordsNotSave {
             try {
-//                List<User> userList = repo.findAll();
-//                if(userList.)
+                System.out.println("In Try");
+
                 Date date = new Date();
                 System.out.println("DATE:: " + date);
                 user.setCreatedDate(date);
                 user.setCollegeName("DY Patil");
-                System.out.println("College Name:: " + user.getCollegeName());
+
                 repo.save(user);
-            } catch (Exception exc){
+
+            } catch (Exception exc) {
+                System.out.println("In Catch");
                 throw new RecordsNotSave("Records not Save...!!!");
             }
-        }
 
+        }
 
         public List<User> getAllUsers()throws RecordsNotFoundException{
             try {
@@ -46,5 +51,12 @@ public class UserService {
 
         public User getById (Integer id){
         return repo.findById(id).get(); }
+
+        public long count(){
+         return  repo.count();
+        }
+
+
+
 
 }

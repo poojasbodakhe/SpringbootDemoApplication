@@ -19,7 +19,6 @@ public class EmployeeService {
         System.out.println("employeeEntity.getEmpId():: " + employeeEntity.getEmpId());
         employeeEntity.setCreatedDate(date);
         EmployeeEntity employeeEntity1 = employeeRepository.getCompanyId(employeeEntity.getCompanyId());
-
         if(employeeEntity1 == null) {
             employeeEntity.setCompanyId("ST1");
         }else {
@@ -29,7 +28,6 @@ public class EmployeeService {
             employeeEntity.setCompanyId(newCompId);
         }
         employeeRepository.save(employeeEntity);
-
 
     }
     public List<EmployeeEntity> getAllEmployee()throws RecordsNotFoundException {

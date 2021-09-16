@@ -4,15 +4,18 @@ import com.springbootApplication.demo.entity.User;
 import com.springbootApplication.demo.exception.RecordsNotFoundException;
 import com.springbootApplication.demo.exception.RecordsNotSave;
 import com.springbootApplication.demo.service.UserService;
+import javafx.util.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
+@Controller
 @RequestMapping(value= "user")
 public class UserController {
     @Autowired
@@ -39,7 +42,6 @@ public class UserController {
         }
     }
 
-
     @PutMapping("updateById/{id}")
     public ResponseEntity<?>update(@RequestBody User user,@PathVariable Integer id)throws RecordsNotSave{
         try {
@@ -52,5 +54,9 @@ public class UserController {
         }
     }
 
+    @GetMapping("UserCount")
+    public long userCount() {
+        return userService.count();
+    }
 
 }
